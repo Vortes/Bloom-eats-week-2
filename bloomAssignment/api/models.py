@@ -3,11 +3,9 @@ from django.db.models.deletion import CASCADE
 from django.contrib.auth.models import User
 
 class AppUser(models.Model):
-    user = models.OneToOneField(User, on_delete=CASCADE)
     name = models.CharField(max_length=50)
+    user_password = models.CharField(max_length=50)
     email = models.EmailField(max_length=100)
-    hobbies = models.CharField(max_length=100)
-    favorite_food = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name

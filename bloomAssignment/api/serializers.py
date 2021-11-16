@@ -4,7 +4,7 @@ from .models import AppUser, Tweet
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = AppUser
-        fields = ['id', 'name', 'email', 'hobbies', 'favorite_food']
+        fields = ['name', 'user_password', 'email']
 
 
 class TweetSerializer(serializers.ModelSerializer):

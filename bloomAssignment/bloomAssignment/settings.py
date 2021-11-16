@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'bloomAssignment.wsgi.application'
 DATABASES = {
     'default': {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "testdb",
+        "NAME": "MockTwitter",
         "USER": "alan",
         "PASSWORD": "",
         "HOST": "localhost",
