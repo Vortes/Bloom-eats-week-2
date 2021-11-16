@@ -2,21 +2,22 @@ from django.shortcuts import render
 from rest_framework import status
 from rest_framework.response import Response
 from django.views.decorators.csrf import csrf_exempt
-from .models import AppUser, Tweet
-from .serializers import UserSerializer, TweetSerializer
+from django.contrib.auth.models import User
+from .models import Tweet
+from .serializers import TweetSerializer, CreateUserSerializer
 from rest_framework.decorators import api_view
 
 @api_view(['GET', 'POST'])
 def users(request):
     
     if request.method == "GET":
-        users = AppUser.objects.all()
-        serializer = UserSerializer(users, many=True)
+        users = User.objects.all()
+        serializer = CreateUserSerializer(users, many=True)
         return Response(serializer.data)
 
     elif request.method == "POST":
         print("Hello " , request.data)
-        serializer = UserSerializer(data=request.data)
+        serializer = CreateUserSerializer(data=request.data)
 
         if serializer.is_valid():
             serializer.save()

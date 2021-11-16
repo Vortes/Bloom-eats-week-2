@@ -1,10 +1,17 @@
 from rest_framework import serializers
-from .models import AppUser, Tweet
+from .models import Tweet
+from django.contrib.auth.models import User
 
-class UserSerializer(serializers.ModelSerializer):
+class CreateUserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = AppUser
-        fields = ['name', 'user_password', 'email']
+        model = User
+        fields = ('username', 'email', 'password', 'first_name', 'last_name')
+        extra_kwargs = {'password': {'write_only': True}}
+
+    def create(self, validated_data):
+        user = User.objects.create(**validated_data)
+        # UserProfile.objects.create(user=user)
+        return user
 
 
 class TweetSerializer(serializers.ModelSerializer):
