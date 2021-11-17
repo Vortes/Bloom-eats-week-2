@@ -7,3 +7,9 @@ class Tweet(models.Model):
     tweet_body = models.CharField(max_length=280)
     num_likes = models.IntegerField()
     num_retweets = models.IntegerField()
+
+
+class UserContacts(models.Model):
+    user = models.ForeignKey(User, on_delete=CASCADE)
+    address = models.CharField(max_length=50)
+    phone_number = models.CharField(max_length=10)
